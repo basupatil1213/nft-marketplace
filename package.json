@@ -42,5 +42,11 @@
   "packageManager": "yarn@3.2.3",
   "engines": {
     "node": ">=18.18.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.1.0",
+    "@web3-storage/w3up-client": "^16.5.2",
+    "learnyouw3up": "^1.4.1",
+    "web3.storage": "^4.5.5"
   }
 }
