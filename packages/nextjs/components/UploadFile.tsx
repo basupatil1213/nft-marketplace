@@ -1,10 +1,13 @@
 "use client"
 import { useEffect, useState } from "react";
+import { parseEther } from "viem";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth/useScaffoldWriteContract";
 import { pinata } from "~~/utils/scaffold-eth/config";
 
 function App() {
   const [selectedFile, setSelectedFile]= useState<File | null>(null);
   const [url, setUrl] = useState<string>("");
+  const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("NFTCollection");
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -24,6 +27,24 @@ function App() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const mintNFT = async () => {
+        try {
+            const response = await writeYourContractAsync({
+              functionName: "safeMint",
+              args: ["0x1356C31E0485ce38C47DbF3C8f5a168cE0EA4413", url]
+            });
+            console.log("Minted NFT:", response);
+
+          } catch (e) {
+            console.error("Error setting greeting:", e);
+          }
+    }
+    if (url) {
+      mintNFT();
+    }
+  },[url])
 
 //   useEffect(() => {
 //     const setInitialUrl = async () => {
@@ -52,3 +73,5 @@ function App() {
 }
 
 export default App;
+
+

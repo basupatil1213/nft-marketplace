@@ -12,7 +12,7 @@ type PageProps = {
 
 async function fetchByteCodeAndAssembly(buildInfoDirectory: string, contractPath: string) {
   const buildInfoFiles = fs.readdirSync(buildInfoDirectory);
-  let bytecode = "";
+  let bytecode = ""
   let assembly = "";
 
   for (let i = 0; i < buildInfoFiles.length; i++) {
@@ -92,3 +92,4 @@ const AddressPage = async ({ params }: PageProps) => {
 };
 
 export default AddressPage;
+;
